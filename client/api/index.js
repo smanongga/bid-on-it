@@ -14,7 +14,7 @@ export function apiGetAllListings(cb){
 }
 
 export function apiGetListing(id, cb){
-    request.get(`/listings/${id}`)
+    request.get(`/listing/${id}`)
     .end((err, res) => {
         if (err) {
             cb(err.message)

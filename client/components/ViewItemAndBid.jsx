@@ -1,6 +1,6 @@
 import React from 'react'
 // import AddBid from './AddBid'
-import api from '../api'
+import {apiGetListing} from '../api/'
 
 export default class ViewItemAndBid extends React.Component {
   constructor (props) {
@@ -15,7 +15,7 @@ export default class ViewItemAndBid extends React.Component {
   }
 
   getListing () {
-    api.apiGetListing(this.props.match.params.id, (error, listing) => {
+  apiGetListing(this.props.match.params.id, (error, listing) => {
       if (error) {
         return console.log(error)
       }
