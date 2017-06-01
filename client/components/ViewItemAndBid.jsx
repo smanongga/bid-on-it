@@ -1,6 +1,6 @@
 import React from 'react'
 // import AddBid from './AddBid'
-
+import api from '../api'
 
 export default class ViewItemAndBid extends React.Component {
   constructor (props) {
@@ -8,6 +8,19 @@ export default class ViewItemAndBid extends React.Component {
     this.state = {
       listing: { name: '', description: '', starting_bid: '', user_name: '', picture_url: '', bids: [] }
     }
+  }
+
+  componentDidMount () {
+    this.getListing()
+  }
+
+  getListing () {
+    api.apiGetListing(this.props.match.params.id, (error, listing) => {
+      if (error) {
+        return console.log(error)
+      }
+      this.setState(listing)
+    })
   }
 
   render () {
@@ -33,23 +46,23 @@ export default class ViewItemAndBid extends React.Component {
                 </tr>
               </thead>
               <tbody>
-              {this.state.listing.bids.map(bid => {
-                return (
-                  <tr>
-                  <td key={bid.id}>{bid.user_name}</td>
-                  <td>{bid.bid_date}</td>
-                  <td>{bid.bid_amount}</td>
-                </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-        <div className='bid-form'>
-          {/* <AddBid bidItem={props.listing.id} /> */}
+                {this.state.listing.bids.map(bid => {
+                  return (
+                    <tr>
+                      <td key={bid.id}>{bid.user_name}</td>
+                      <td>{bid.bid_date}</td>
+                      <td>{bid.bid_amount}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className='bid-form'>
+            {/* <AddBid bidItem={props.listing.id} /> */}
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 }
