@@ -31,11 +31,11 @@ router.get('/user/:userId/listings', function (req, res) {
 })
 
 router.get('/listing/:listingId', function (req, res) {
-  db.getOneListing(req.params.listingId, (error, listings) => {
+  db.getOneListing(req.params.listingId, (error, listing) => {
     if (error) {
       res.json({error})
     }
-    res.json({listings})
+    res.json({listing})
   })
 })
 
@@ -67,9 +67,10 @@ router.get('/user/:userId/watching', function (req, res) {
 })
 
 router.post('/listings/bid/:listingId/:userId', function (req, res) {
+  console.log(req.body)
   db.addBid(req.body.bidAmount, req.params.userId, req.params.listingId, (error, bidId) => {
     if (error) {
-      res.json({error})
+      return res.json({error})
     }
     res.json({bidId})
   })

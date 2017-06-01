@@ -16,11 +16,11 @@ const data = require('./data.js')
 function getAllListings (callback) {
   let listings = data.listings.map(listing => {
     listing.user_name = data.users.find(user => user.id === listing.user_id).user_name
-    let bids = data.bids.filter(bid => bid.listing_id === listing.id)
-    listing.number_of_bids = bids.length
+    listing.bids = data.bids.filter(bid => bid.listing_id === listing.id)
+    listing.number_of_bids = listing.bids.length
     listing.current_bid = listing.starting_bid
     if (listing.number_of_bids > 0) {
-      listing.current_bid = bids.sort((a, b) => b.bid_amount - a.bid_amount)
+      listing.current_bid = listing.bids.sort((a, b) => b.bid_amount - a.bid_amount)[0].bid_amount
     }
     return listing
   })
@@ -32,7 +32,8 @@ function getCurrentListings (callback) {
     if (error) {
       return callback(error)
     }
-    listings = listings.filter(listing => listing.winner)
+    const d = new Date()
+    listings = listings.filter(listing => listing.finish_date > d)
     return callback(null, listings)
   })
 }
@@ -42,7 +43,8 @@ function getExpiredListings (callback) {
     if (error) {
       return callback(error)
     }
-    listings = listings.filter(listing => !listing.winner)
+    const d = new Date()
+    listings = listings.filter(listing => listing.finish_date < d)
     return callback(null, listings)
   })
 }
@@ -73,11 +75,11 @@ function getUserListings (userId, callback) {
   if (!user) {
     return callback('There is no user with that ID')
   }
-  let listings = getAllListings((err, listings) => {
-    listings = listings.filter(listing => listing.user_id === userId)
-    if (listings.length === 0) {
-      return callback('There are no listings from that user')
+  getCurrentListings((error, listings) => {
+    if (error) {
+      return callback(error)
     }
+    listings = listings.filter(listing => listing.user_id === userId)
     return callback(null, listings)
   })
 }
@@ -100,15 +102,15 @@ function addListing (listingData, userId, callback) {
   if (isNaN(Number(listingData.startingBid))) {
     return callback('Please enter a valid starting bid')
   }
-
+  const currentDate = new Date()
   let listing = {
     id: data.listings.sort((a, b) => b.id - a.id)[0].id + 1,
     name: listingData.name,
     description: listingData.description,
     picture_url: listingData.pictureUrl,
     starting_bid: Number(listingData.startingBid),
-    start_date: new Date(),
-    finish_date: new Date (getFullYear(), getMonth(), getDate() + 7, getHour(), getMinute(), getSecond())
+    start_date: currentDate,
+    finish_date: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7, currentDate.getHours(), currentDate.getMinutes(), currentDate.getSeconds())
   }
   if (listingData.pictureUrl.length === 0) {
     listing.picture_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'
@@ -117,7 +119,7 @@ function addListing (listingData, userId, callback) {
   return callback(null, listing.id)
 }
 
-function addBid(bidAmount, userId, listingId, callback) {
+function addBid (bidAmount, userId, listingId, callback) {
   if (isNaN(Number(bidAmount))) {
     return callback('Please enter a valid starting bid')
   }
