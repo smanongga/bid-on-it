@@ -1,22 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import Word from '../components/Word'
-
-/*const Words = ({words}) => (
+function Listings (props){
   <div>
-    {words.map(word =>
-      <Word key={word.id}
-        {...word}
-      />
-    )}
-  </div>
-)*/
+    <p>Test text listing</p>
+    </div>
+}
 
 const mapStateToProps = (state) => {
   return {
     words: state.words
   }
 }
+
+export default Listings
 
 // export default connect(mapStateToProps)(Words)
