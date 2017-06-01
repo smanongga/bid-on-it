@@ -1,7 +1,9 @@
 import React from 'react'
+import {Route} from 'react-router-dom'
+import Listings from './Listings'
+import Header from'../components/Header'
 
-import AddWord from '../containers/AddWord'
-import Words from '../containers/Words'
+
 
 class App extends React.Component{
     constructor(props){
@@ -12,6 +14,11 @@ class App extends React.Component{
     render(){
         return(
             <div>
+                <h1>Test Text</h1>
+                {/*<Header/> Uncomment when header is exporting*/}
+                <Route path={"/viewlistings/"} component={Listings}/>
+                {/*<Route path={"/viewlisting/:id"} component={ViewItemAndBid}/>
+                <Route path={"/list/item/:userid"} component={ListAnItem}/>*/}
             </div>
         )
     }
