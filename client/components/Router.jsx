@@ -1,16 +1,14 @@
 import React from 'react'
-import {BrowserRouter } from 'react-router-dom'
+import {HashRouter } from 'react-router-dom'
 import App from '../containers/App'
 
 const Router = () => {
   return (
-      <BrowserRouter history={history} >
+      <HashRouter>
           <App />
-
-      </BrowserRouter>
+      </HashRouter>
   )
 }
 
 
 export default Router
-
