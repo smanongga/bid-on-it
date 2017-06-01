@@ -61,6 +61,10 @@ function getOneListing (id, callback) {
   }
   let bids = data.bids.filter(bid => bid.listing_id === listing.id)
   bids.sort((a, b) => b.bid_amount - a.bid_amount)
+  listing.current_bid = listing.starting_bid
+  if (bids.length > 0) {
+    listing.current_bid = bids[0].bid_amount
+  }
   listing.bids = bids.map(bid => {
     bid.user_name = data.users.find(user => user.id === bid.user_id).user_name
     return bid
@@ -90,13 +94,13 @@ function addListing (listingData, userId, callback) {
   if (!user) {
     return callback('There is no user with that ID')
   }
-  if (listingData.name.length === 0) {
+  if (!listingData.name || listingData.name.length === 0) {
     return callback('Please enter a name')
   }
-  if (listingData.startingBid.length === 0) {
+  if (!listingData.startingBid || listingData.startingBid.length === 0) {
     return callback('Please enter a starting bid')
   }
-  if (listingData.description.length === 0) {
+  if (!listingData.description || listingData.description.length === 0) {
     return callback('Please enter a description')
   }
   if (isNaN(Number(listingData.startingBid))) {
@@ -104,7 +108,8 @@ function addListing (listingData, userId, callback) {
   }
   const currentDate = new Date()
   let listing = {
-    id: data.listings.sort((a, b) => b.id - a.id)[0].id + 1,
+    id: data.listings.sort((a, b) => a.id - b.id)[data.listings.length - 1].id + 1,
+    user_id: Number(userId),
     name: listingData.name,
     description: listingData.description,
     picture_url: listingData.pictureUrl,
@@ -112,7 +117,7 @@ function addListing (listingData, userId, callback) {
     start_date: currentDate,
     finish_date: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7, currentDate.getHours(), currentDate.getMinutes(), currentDate.getSeconds())
   }
-  if (listingData.pictureUrl.length === 0) {
+  if (!listingData.pictureUrl || listingData.pictureUrl.length === 0) {
     listing.picture_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'
   }
   data.listings.push(listing)
@@ -140,11 +145,12 @@ function addBid (bidAmount, userId, listingId, callback) {
     if (listing.user_id === userId) {
       return callback('You cannot bid on your own listings')
     }
-    if (Math.floor(Number(bid) * 100) / 100 <= listing.bids[listing.bids.length - 1].bid_amount) {
+    if (Math.floor(Number(bidAmount) * 100) / 100 <= listing.bids[listing.bids.length - 1].bid_amount) {
       return callback('Please enter a bid that is larger than the previous one')
     }
     let bid = {
       id: data.bids.sort((a, b) => b.id - a.id)[0].id + 1,
+      listing_id: listingId,
       bid_amount: Number(bidAmount),
       user_id: Number(userId),
       bid_date: new Date()
