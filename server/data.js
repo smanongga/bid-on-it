@@ -159,7 +159,7 @@ const bids = [
     user_id: 4,
     bid_amount: 100,
     bid_date: new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1, d.getHours(), d.getMinutes() - 5, d.getSeconds())
-  },
+  }
 ]
 
 module.exports = {
