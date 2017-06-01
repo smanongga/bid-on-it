@@ -1,0 +1,39 @@
+{
+  "name": "boilerplate-react-redux",
+  "version": "0.1.0",
+  "description": "React Redux using express",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "nodemon --watch server server/index & webpack --watch",
+    "watch": "nodemon -e js,jsx -x npm test"
+  },
+  "keywords": [
+    "react",
+    "redux"
+  ],
+  "author": "EDA",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "nodemon": "^1.11.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
