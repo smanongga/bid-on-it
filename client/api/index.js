@@ -1,5 +1,6 @@
 import request from 'superagent'
 
+
 export function apiGetAllListings(cb){
     request.get('/listings')
     .end((err, res) => {
@@ -23,4 +24,5 @@ export function apiGetListing(id, cb){
         cb(null, result)
     })
 }
+
 

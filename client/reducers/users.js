@@ -1,17 +1,17 @@
 const users = (state = [
   {
     userName: 'luke',
-    userId: 1 
+    userId: 1
 
   },
   {
     userName: 'jae',
-    userId: 2 
+    userId: 2
 
   },
   {
     userName: 'jack',
-    userId: 3 
+    userId: 3
 
   },
   {
@@ -21,7 +21,7 @@ const users = (state = [
   },
   {
     userName: 'jules',
-    userId: 5 
+    userId: 5
 
   }
 ], action) => {
