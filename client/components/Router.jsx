@@ -1,14 +1,12 @@
 import React from 'react'
-import {HashRouter } from 'react-router-dom'
+import {Router } from 'react-router-dom'
 import App from '../containers/App'
 
-const Router = () => {
+export const getRouter = () => {
   return (
-      <HashRouter>
+      <Router>
           <App />
-      </HashRouter>
+
+      </Router>
   )
 }
-
-
-export default Router

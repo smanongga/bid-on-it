@@ -1,6 +1,6 @@
 import React from 'react'
 import AddBid from './AddBid'
-import {apiGetListing} from '../api'
+import {apiGetListing} from '../api/'
 
 export default class ViewItemAndBid extends React.Component {
   constructor (props) {
