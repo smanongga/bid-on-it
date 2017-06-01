@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import Word from '../components/Word'
 
-const Words = ({words}) => (
+/*const Words = ({words}) => (
   <div>
     {words.map(word =>
       <Word key={word.id}
@@ -11,7 +11,7 @@ const Words = ({words}) => (
       />
     )}
   </div>
-)
+)*/
 
 const mapStateToProps = (state) => {
   return {
@@ -19,4 +19,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Words)
+// export default connect(mapStateToProps)(Words)
