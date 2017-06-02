@@ -1,8 +1,7 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
-
-import Listings from './Listings'
-import Header from '../components/Header'
+import Listings from '../components/Listings'
+import Header from'../components/Header'
 import ListAnItem from '../components/ListAnItem'
 import ViewItemAndBid from '../components/ViewItemAndBid'
 
@@ -10,7 +9,6 @@ class App extends React.Component {
   constructor (props) {
     super(props)
   }
-
   render () {
     return (
       <div>
@@ -23,9 +21,5 @@ class App extends React.Component {
     )
   }
 }
-// function Listings (props) {
-//     console.log(props)
-//     return (<p>Hi</p>)
-// }
 
 export default App

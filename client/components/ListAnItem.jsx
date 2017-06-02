@@ -29,15 +29,12 @@ class ListAnItem extends React.Component {
   submitListing (e) {
     e.preventDefault()
     const newListing = this.state
-    console.log(newListing)
-    //to be replaced
     apiPostListing(newListing, (err, listingId) => {
       this.props.history.push(`/viewlisting/${listingId}`)
-      this.props.history.push('/viewlisting/' + listingId)
     })
   }
 
-  render () {
+  render() {
     return (
       <div>
         <form>
@@ -63,16 +60,3 @@ function click (props){
   props.history.push('/tyest')
 }
 export default ListAnItem
-
-// Item data structure
-// {
-//   id: 1,
-//   name: "Luke's listing",
-//   description: 'This is the description',
-//   picture_url: 'http://www.cutestpaw.com/wp-content/uploads/2011/11/To-infinity-and-beyond.jpeg',
-//   starting_bid: 10,
-//   user_id: 1,
-//   start_date: new Date(d.getFullYear(), d.getMonth(), d.getDate() - 9, d.getHours(), d.getMinutes(), d.getSeconds()).toLocaleString(),
-//   finish_date: new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours() + 1, d.getMinutes(), d.getSeconds()),
-//   winner: 0
-// },
