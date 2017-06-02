@@ -16,7 +16,7 @@ class AddBid extends React.Component {
   fieldChanged (e) {
     e.preventDefault()
     this.setState({
-      [e.target.amount]: e.target.value
+      [e.target.bidAmount]: e.target.value
     }, console.log(this.state))
   }
 
