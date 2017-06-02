@@ -36,3 +36,15 @@ export function apiPostListing(obj, cb){
     })
 }
 
+export function apiPostBid(obj, cb){
+    const userId = obj.user_id
+    const listingId = obj.id
+    request.post(`/listings/bid/${listingId}/${userId}`)
+    .send(obj)
+    .end((err, res) => {
+        if (err) cb(err)
+        const result = res.body.bidId
+        cb(null, result)
+    })
+}
+
