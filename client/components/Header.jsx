@@ -3,10 +3,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-function Header(props) {
+function Header (props) {
     console.log(props)
 
-    return (
+  return (
         <div>
             <Link to="/viewlistings/">View Listings</Link>
             <Link to={`/listitem/1`}> List an item</Link>
