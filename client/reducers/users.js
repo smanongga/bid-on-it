@@ -1,40 +1,7 @@
-const users = (state = [
-  {
-    userName: 'luke',
-    userId: 1
-
-  },
-  {
-    userName: 'jae',
-    userId: 2
-
-  },
-  {
-    userName: 'jack',
-    userId: 3
-
-  },
-  {
-    userName: 'sam',
-    userId: 4
-
-  },
-  {
-    userName: 'jules',
-    userId: 5
-
-  }
-], action) => {
+const users = (state = 0, action) => {
   switch (action.type) {
-    case 'ADD_USER':
-      return [
-        ...state,
-        {
-          userName: action.name,
-          userId: action.id
-        }
-      ]
-
+    case 'LOG_IN':
+      return action.id
     default:
       return state
   }
