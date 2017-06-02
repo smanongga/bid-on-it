@@ -16,7 +16,6 @@ class ListAnItem extends React.Component {
       err: null
     }
     this.fieldChanged = this.fieldChanged.bind(this)
-    this.addListing = this.addListing.bind(this)
     this.submitListing = this.submitListing.bind(this)
   }
 
@@ -32,9 +31,9 @@ class ListAnItem extends React.Component {
     const newListing = this.state
     console.log(newListing)
     //to be replaced
-    apiPostListing(newListing, (err, listingId => {
-      props.history.push('/viewlisting/' + listingId)
-    }
+    apiPostListing(newListing, (err, listingId) => {
+      this.props.history.push('/viewlisting/' + listingId)
+    })
   }
 
 
@@ -54,16 +53,6 @@ class ListAnItem extends React.Component {
   }
 }
 
-function ListAnItem(props){
-    console.log(props)
-    return (
-       <button onClick={()=> {click(props)}}>fdg</button>
-    )
-}
-
-function click (props){
-    props.history.push('/tyest')
-}
 export default ListAnItem
 
 // Item data structure
