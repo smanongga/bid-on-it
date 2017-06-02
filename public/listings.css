@@ -5,11 +5,11 @@
 
 .listing {
   display: flex;
-  width: 30%;
+  width: 25%;
   flex-direction: column;
   border: 1px solid black;
   margin: 2em;
-  max-height: 350px;
+  max-height: 450px;
   overflow: auto;
 }
 
