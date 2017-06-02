@@ -4,7 +4,7 @@ import request from 'superagent'
 import {apiPostListing} from '../api'
 
 class ListAnItem extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     const d = new Date()
     this.state = {
@@ -49,4 +49,14 @@ class ListAnItem extends React.Component {
   }
 }
 
+function listAnItem (props) {
+  console.log(props)
+  return (
+    <button onClick={()=> {click(props)}}>fdg</button>
+  )
+}
+
+function click (props){
+  props.history.push('/tyest')
+}
 export default ListAnItem

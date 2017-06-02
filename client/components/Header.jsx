@@ -3,10 +3,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-function Header(props) {
+function Header (props) {
     console.log(props)
 
-    return (
+  return (
         <div>
             <h1>Nav Bar here</h1>
             <Link to="/viewlistings/">View Listings</Link>
