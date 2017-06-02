@@ -89,23 +89,31 @@ function getUserListings (userId, callback) {
 }
 
 function addListing (listingData, userId, callback) {
+  console.log(listingData, userId, 'params')
   userId = Number(userId)
+  console.log(userId)
   let user = data.users.find(user => user.id === userId)
+  console.log(user)
   if (!user) {
     return callback('There is no user with that ID')
   }
+  console.log('here')
   if (!listingData.name || listingData.name.length === 0) {
     return callback('Please enter a name')
   }
-  if (!listingData.startingBid || listingData.startingBid.length === 0) {
+  console.log('here')
+  if (!listingData.starting_bid || listingData.starting_bid.length === 0) {
     return callback('Please enter a starting bid')
   }
+  console.log('here')
   if (!listingData.description || listingData.description.length === 0) {
     return callback('Please enter a description')
   }
-  if (isNaN(Number(listingData.startingBid))) {
+  console.log('here')
+  if (isNaN(Number(listingData.starting_bid))) {
     return callback('Please enter a valid starting bid')
   }
+  console.log('here')
   const currentDate = new Date()
   let listing = {
     id: data.listings.sort((a, b) => a.id - b.id)[data.listings.length - 1].id + 1,
@@ -113,14 +121,17 @@ function addListing (listingData, userId, callback) {
     name: listingData.name,
     description: listingData.description,
     picture_url: listingData.pictureUrl,
-    starting_bid: Number(listingData.startingBid),
+    starting_bid: Number(listingData.starting_bid),
     start_date: currentDate,
     finish_date: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7, currentDate.getHours(), currentDate.getMinutes(), currentDate.getSeconds())
   }
+  console.log(listing)
   if (!listingData.pictureUrl || listingData.pictureUrl.length === 0) {
     listing.picture_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'
   }
+  console.log(listing)
   data.listings.push(listing)
+  console.log(data.listings)
   return callback(null, listing.id)
 }
 
