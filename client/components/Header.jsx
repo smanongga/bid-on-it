@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Login from './Login'
 
 function Header (props) {
     console.log(props)
@@ -10,6 +11,7 @@ function Header (props) {
         <div>
             <Link to="/viewlistings/">View Listings</Link>
             <Link to={`/listitem/`}> List an item</Link>
+            <Login />
         </div>
     )
 }

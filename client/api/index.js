@@ -47,3 +47,15 @@ export function apiPostBid(obj, cb){
         cb(null, result)
     })
 }
+
+export function apiCheckLogin(obj, cb){
+  request.post('/login')
+  .send(obj)
+  .end((err, res )=> {
+    if (err) console.log("yhis error", err)
+    const result = res.body
+    console.log(res)
+    cb(null, result)
+  
+  })}
+

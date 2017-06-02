@@ -1,17 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {LogIn} from '../actions/'
+import {apiCheckLogin} from '../api/'
 
+let name
+let id
 class Login extends React.Component{
     constructor(props){
         super(props)
 
         this.state={
-            username: '',
-            password: ''
+            userName: '',
+            password: '',
 
         }
-        this.saveUserToSession = this.saveUserToSession.bind(this)
+
     }
     handleChange(evt){
         this.setState({
@@ -21,8 +24,16 @@ class Login extends React.Component{
 
     handleSubmit(evt){
         evt.preventDefault()
-        props.logIn()
+        apiCheckLogin(this.state, (err, res) => {
+            if (err) return console.log(err)
+            console.log(res.body)
+            //name = res.body.name
+            id = res.body.userId
+        })
+        this.props.logIn()
     }
+
+   
 
 
 
@@ -30,8 +41,8 @@ class Login extends React.Component{
         return(
             <div>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input type="text" placeholder="username" onChange={this.handleChange.bind(this)}/>
-                    <input type="password" placeholder="password" onChange={this.handleChange.bind(this)}/>
+                    <input type="text" placeholder="username" name="userName" onChange={this.handleChange.bind(this)}/>
+                    <input type="password" placeholder="password" name="password" onChange={this.handleChange.bind(this)}/>
                     <button>Login</button>
                 </form>
             </div>
@@ -41,6 +52,8 @@ class Login extends React.Component{
 
 function mapDispatchToProps(dispatch){
     return {
-        logIn: dispatch(LogIn(this.state.username, this.state.password))
+        logIn:(name, id) => { dispatch(LogIn(name, id)) }
     }
 }
+
+export default connect(mapDispatchToProps)(Login)
