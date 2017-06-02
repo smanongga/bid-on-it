@@ -16,7 +16,7 @@ class App extends React.Component {
         <Header routeProps={this.props} />
         <Route path={'/viewlistings/'} component={Listings} />
         <Route path={'/viewlisting/:id'} component={ViewItemAndBid} />
-        <Route path={'/listitem/:userid'} component={ListAnItem} />
+        <Route path={'/listitem/'} component={ListAnItem} />
       </div>
     )
   }
