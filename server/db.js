@@ -157,9 +157,6 @@ function addBid (bidAmount, userId, listingId, callback) {
     if (listing.user_id === userId) {
       return callback('You cannot bid on your own listings')
     }
-    if (Math.floor(Number(bidAmount) * 100) / 100 <= listing.bids[listing.bids.length - 1].bid_amount) {
-      return callback('Please enter a bid that is larger than the previous one')
-    }
     let bid = {
       id: data.bids.sort((a, b) => b.id - a.id)[0].id + 1,
       listing_id: listingId,

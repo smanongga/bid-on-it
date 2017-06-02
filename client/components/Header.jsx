@@ -31,8 +31,7 @@ function Header (props) {
     <div className="header">
         <h1>Welcome Back, {props.name}</h1>
             <Link to="/viewlistings/" className='btn btn-default'>View Listings</Link>
-            <Link to={`/listitem/1`} className='btn btn-default'> List an item</Link>
-            <Link to={"/viewlisting/1"} className='btn btn-default'>View a listing</Link>
+            <Link to={`/listitem/`} className='btn btn-default'> List an item</Link>
             <Login/>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 import {apiPostBid} from '../api'
 
@@ -24,7 +25,7 @@ class AddBid extends React.Component {
 
   submitBid (e) {
     e.preventDefault()
-    const newBid = {id: this.props.bidItem, user_id: 5, bidAmount: this.state.bidAmount}
+    const newBid = {id: this.props.bidItem, user_id: this.props.user_id, bidAmount: this.state.bidAmount}
     console.log('This is new bid' + newBid)
     apiPostBid(newBid, (err, bidId) => {
       console.log(this.props, 'pro')
@@ -49,4 +50,8 @@ class AddBid extends React.Component {
     )
   }
 }
-export default AddBid
+
+function mapStateToProps (state) {
+  return {user_id: state.loggedIn.userId}
+}
+export default connect(mapStateToProps)(AddBid)
