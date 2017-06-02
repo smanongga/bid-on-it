@@ -19,16 +19,17 @@ export default class ViewItemAndBid extends React.Component {
       if (error) {
         return console.log(error)
       }
-      this.setState(listing)
+      this.setState(listing, console.log('hi', this.state))
     })
   }
 
   render () {
+    console.log(this.props)
     return (
       <div className='row view-item-bid'>
         <div className='col-md-6'>
           <div className='image'>
-            <img src={this.state.listing.picture_url} />
+            <img src={this.state.listing.picture_url} className="width"/>
           </div>
         </div>
         <div className='col-md-6'>
@@ -37,7 +38,7 @@ export default class ViewItemAndBid extends React.Component {
           <div className='description'><p><b>Description:</b><br />{this.state.listing.description}</p></div>
           <div className='starting-bid'><p><b>Starting Bid:</b><br />{this.state.listing.starting_bid}</p></div>
           <div className='bid-listing'>
-            <table>
+            <table className='table table-striped'>
               <thead>
                 <tr>
                   <th>Name</th>
@@ -59,7 +60,7 @@ export default class ViewItemAndBid extends React.Component {
             </table>
           </div>
           <div className='bid-form'>
-            <AddBid bidItem={this.state.listing.id} />
+            <AddBid bidItem={this.state.listing.id} parentProps={this.props} reloadList={this.getListing.bind(this)}/>
           </div>
         </div>
       </div>

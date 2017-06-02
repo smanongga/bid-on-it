@@ -36,7 +36,7 @@ export function apiPostListing (obj, cb) {
 }
 
 
-export function apiPostBid(obj, cb){
+export function apiPostBid (obj, cb) {
     const userId = obj.user_id
     const listingId = obj.id
     request.post(`/listings/bid/${listingId}/${userId}`)

@@ -1,0 +1,44 @@
+.list-item-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  width: 30%;
+  margin-bottom: 20px;
+}
+
+.form-button {
+  width: 150px;
+  height: 30px;
+  border-radius: 0;
+  background: tomato;
+}
+
+.form-header {
+  font-size: 40px;
+}
+
+/*.listing {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 2em;
+  max-height: 350px;
+  overflow: auto;
+}
+
+.listing > img {
+  height: 60%;
+  object-fit: contain;
+}
+
+.listing > h2 {
+  text-decoration: underline;
+}
+
+.listing > h2:hover {
+  color: red;
+  cursor: pointer;
+}*/

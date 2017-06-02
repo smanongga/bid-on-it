@@ -67,6 +67,7 @@ router.get('/user/:userId/watching', function (req, res) {
 })
 
 router.post('/listings/bid/:listingId/:userId', function (req, res) {
+  console.log(req)
   db.addBid(req.body.bidAmount, req.params.userId, req.params.listingId, (error, bidId) => {
     if (error) {
       return res.json({error})
@@ -76,7 +77,7 @@ router.post('/listings/bid/:listingId/:userId', function (req, res) {
 })
 
 router.post('/listings/add/:userId', function (req, res) {
-  db.addListing(req.body, req.params.userId, (error, listingId) => {
+  db.addListing(req.body.bidAmount, req.params.userId, (error, listingId) => {
     if (error) {
       return res.json({error})
     }
@@ -85,12 +86,11 @@ router.post('/listings/add/:userId', function (req, res) {
 })
 
 router.post('/login', function (req, res) {
-  console.log("req: ",req)
-  db.checkLogin(req.body.userName, req.body.password, (error, userId) => {
+  db.checkLogin(req.body.userName, req.body.password, (error, userDetails) => {
     if (error) {
       return res.json({error})
     }
-    return res.json({userId})
+    return res.json(userDetails)
   })
 })
 
