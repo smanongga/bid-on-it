@@ -21,9 +21,5 @@ class App extends React.Component {
     )
   }
 }
-// function Listings (props) {
-//     console.log(props)
-//     return (<p>Hi</p>)
-// }
 
 export default App
