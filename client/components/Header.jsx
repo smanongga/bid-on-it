@@ -1,8 +1,9 @@
 // navigation to go here, push to history on button clicks, not Link
-
+import {connect} from 'react-redux'
 import React from 'react'
 import {Link} from 'react-router-dom'
 import Login from './Login'
+
 
 function Header (props) {
     console.log(props)
@@ -28,6 +29,7 @@ function Header (props) {
       </div>
     </nav>
     <div className="header">
+        <h1>Welcome Back, {props.name}</h1>
             <Link to="/viewlistings/" className='btn btn-default'>View Listings</Link>
             <Link to={`/listitem/`} className='btn btn-default'> List an item</Link>
             <Login/>
@@ -36,5 +38,11 @@ function Header (props) {
     )
 }
 
+function mapStateToProps(state){
+    return {
+        name: state.loggedIn.name
+    }
+}
 
-export default Header
+
+export default connect(mapStateToProps)(Header)

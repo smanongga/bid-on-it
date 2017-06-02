@@ -1,5 +1,6 @@
 import React from 'react'
 import request from 'superagent'
+import {connect} from 'react-redux'
 
 import {apiPostListing} from '../api'
 
@@ -12,7 +13,6 @@ class ListAnItem extends React.Component {
       description: '',
       picture_url: '',
       starting_bid: 0,
-      user_id: 1,
       err: null
     }
     this.fieldChanged = this.fieldChanged.bind(this)
@@ -29,6 +29,8 @@ class ListAnItem extends React.Component {
   submitListing (e) {
     e.preventDefault()
     const newListing = this.state
+    newListing.user_id = this.props.user_id
+    console.log(newListing, 'new listing')
     apiPostListing(newListing, (err, listingId) => {
       this.props.history.push(`/viewlisting/${listingId}`)
     })
@@ -60,4 +62,11 @@ function listAnItem (props) {
 function click (props){
   props.history.push('/tyest')
 }
-export default ListAnItem
+
+function mapStateToProps(state) {
+  return {
+    user_id: state.loggedIn.userId
+  }
+}
+
+export default connect(mapStateToProps)(ListAnItem)
