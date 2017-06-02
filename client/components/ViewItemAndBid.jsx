@@ -26,17 +26,17 @@ export default class ViewItemAndBid extends React.Component {
   render () {
     return (
       <div className='row view-item-bid'>
-        <div className='col-md-12 item-title'>{this.state.listing.name}</div>
-        <div className='col-md-4'>
+        <div className='col-md-6'>
           <div className='image'>
             <img src={this.state.listing.picture_url} />
           </div>
         </div>
-        <div className='col-md-8'>
+        <div className='col-md-6'>
+          <div className='item-title'><h2>{this.state.listing.name}</h2></div>
           <div className='submitted-by'><p><b>Submitted By:</b><br />{this.state.listing.user_name}</p></div>
           <div className='description'><p><b>Description:</b><br />{this.state.listing.description}</p></div>
           <div className='starting-bid'><p><b>Starting Bid:</b><br />{this.state.listing.starting_bid}</p></div>
-          <div className='row bid-listing'>
+          <div className='bid-listing'>
             <table>
               <thead>
                 <tr>
@@ -48,8 +48,8 @@ export default class ViewItemAndBid extends React.Component {
               <tbody>
                 {this.state.listing.bids.map(bid => {
                   return (
-                    <tr>
-                      <td key={bid.id}>{bid.user_name}</td>
+                    <tr key={`${bid.id}`}>
+                      <td>{bid.user_name}</td>
                       <td>{bid.bid_date}</td>
                       <td>{bid.bid_amount}</td>
                     </tr>
