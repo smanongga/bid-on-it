@@ -4,9 +4,10 @@ import {apiPostBid} from '../api'
 
 class AddBid extends React.Component {
   constructor (props) {
+    console.log(props)
     super(props)
     this.state = {
-      id: props.listings.id,
+      id: props.bidItem,
       userId: 5
     }
     this.fieldChanged = this.fieldChanged.bind(this)
@@ -25,7 +26,7 @@ class AddBid extends React.Component {
     const newBid = this.state
     console.log(newBid)
     apiPostBid(newBid, (err, bidId) => {
-      this.props.history.push(`/viewlisting/${this.props.listings.id}`)
+      this.props.history.push(`/viewlisting/${this.props.bidItem}`)
       if (err) {
         console.log(err)
       }
