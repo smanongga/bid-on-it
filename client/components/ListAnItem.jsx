@@ -33,7 +33,7 @@ class ListAnItem extends React.Component {
     //to be replaced
     apiPostListing(newListing, (err, listingId) => {
       this.props.history.push(`/viewlisting/${listingId}`)
-      this.props.history.push('/viewlisting/' + listingId)
+
     })
   }
 
