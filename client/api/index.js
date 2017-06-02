@@ -29,6 +29,7 @@ export function apiPostListing (obj, cb) {
     request.post(`/listings/add/${id}`)
     .send(obj)
     .end((err, res) => {
+      console.log(res, 'red')
         if (err) cb(err)
         const result = res.body.listingId
         cb(null, result)
@@ -56,6 +57,5 @@ export function apiCheckLogin(obj, cb){
     const result = res.body
     console.log(res)
     cb(null, result)
-  
-  })}
 
+  })}
