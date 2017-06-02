@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {LogIn} from '../actions/'
+import {logIn} from '../actions/'
 import {apiCheckLogin} from '../api/'
 
 let name
@@ -26,11 +26,13 @@ class Login extends React.Component{
         evt.preventDefault()
         apiCheckLogin(this.state, (err, res) => {
             if (err) return console.log(err)
-            console.log(res.body)
-            //name = res.body.name
-            id = res.body.userId
+            console.log(res)
+            name = res.name
+            id = res.userId
+            console.log(id, name, "this one")
+            this.props.logIn(name, id)
         })
-        this.props.logIn()
+        
     }
 
    
@@ -52,8 +54,9 @@ class Login extends React.Component{
 
 function mapDispatchToProps(dispatch){
     return {
-        logIn:(name, id) => { dispatch(LogIn(name, id)) }
+        logIn:(name, id) => { 
+            dispatch(logIn(id, name)) }
     }
 }
 
-export default connect(mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Login)

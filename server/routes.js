@@ -86,6 +86,7 @@ router.post('/listings/add/:userId', function (req, res) {
 })
 
 router.post('/login', function (req, res) {
+  console.log("hey")
   db.checkLogin(req.body.userName, req.body.password, (error, userDetails) => {
     if (error) {
       return res.json({error})
