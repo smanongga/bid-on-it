@@ -162,7 +162,7 @@ function addBid (bidAmount, userId, listingId, callback) {
       listing_id: listingId,
       bid_amount: Number(bidAmount),
       user_id: Number(userId),
-      bid_date: new Date()
+      bid_date: new Date().toLocaleDateString('en-GB')
     }
     data.bids.push(bid)
     return callback(null, bid.id)
