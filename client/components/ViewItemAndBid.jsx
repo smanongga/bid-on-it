@@ -29,7 +29,7 @@ export default class ViewItemAndBid extends React.Component {
       <div className='row view-item-bid'>
         <div className='col-md-6'>
           <div className='image'>
-            <img src={this.state.listing.picture_url} className="width"/>
+            <img src={this.state.listing.picture_url} className='width' />
           </div>
         </div>
         <div className='col-md-6'>
