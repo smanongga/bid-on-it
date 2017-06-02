@@ -1,12 +1,12 @@
 import React from 'react'
-// import AddBid from './AddBid'
+import AddBid from './AddBid'
 import {apiGetListing} from '../api/'
 
 export default class ViewItemAndBid extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      listing: { name: '', description: '', starting_bid: '', user_name: '', picture_url: '', bids: [] }
+      listing: { id: '', name: '', description: '', starting_bid: '', user_name: '', picture_url: '', bids: [] }
     }
   }
 
