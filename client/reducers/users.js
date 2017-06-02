@@ -1,10 +1,12 @@
-const users = (state = 0, action) => {
+
+const loggedIn = (state = {name: 'luke', userId: 1}, action) => {
   switch (action.type) {
     case 'LOG_IN':
-      return action.id
+      return {name: action.name, userId: action.id
+        }
     default:
       return state
+    }
   }
-}
 
-export default users
+export default loggedIn
