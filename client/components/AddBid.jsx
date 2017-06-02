@@ -6,7 +6,7 @@ class AddBid extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      id: props.listing.id,
+      id: props.listings.id,
       userId: 5
     }
     this.fieldChanged = this.fieldChanged.bind(this)
@@ -24,8 +24,8 @@ class AddBid extends React.Component {
     e.preventDefault()
     const newBid = this.state
     console.log(newBid)
-    apiPostBid(newBid, (err, listingId) => {
-      // this.props.history.push('/viewlisting/' + listingId)
+    apiPostBid(newBid, (err, bidId) => {
+      this.props.history.push(`/viewlisting/${this.props.listings.id}`)
       if (err) {
         console.log(err)
       }
