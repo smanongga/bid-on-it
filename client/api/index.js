@@ -9,6 +9,7 @@ export function apiGetAllListings(cb){
         return
       }
       const result = res.body
+      console.log(res)
       cb(null, result)
     })
 }
@@ -35,4 +36,3 @@ export function apiPostListing(obj, cb){
         cb(null, result)
     })
 }
-
