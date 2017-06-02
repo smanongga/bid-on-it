@@ -1,9 +1,9 @@
-let nextWordId = 0
 
-export const addWord = (word) => {
+
+export const LogIn = (username, password) => {
   return {
-    type: 'ADD_WORD',
-    id: nextWordId++,
-    word
+    type: 'LOG_IN',
+    username: username,
+    password: password
   }
 }

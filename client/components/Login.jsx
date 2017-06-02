@@ -1,10 +1,14 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {LogIn} from '../actions/'
 
 class Login extends React.Component{
     constructor(props){
         super(props)
 
         this.state={
+            username: '',
+            password: ''
 
         }
         this.saveUserToSession = this.saveUserToSession.bind(this)
@@ -17,23 +21,26 @@ class Login extends React.Component{
 
     handleSubmit(evt){
         evt.preventDefault()
-        this.saveUserToSession()
+        props.logIn()
     }
 
-    saveUserToSession(){
-        localStorage.clear('userObj')
-        localStorage.setItem('userObj', JSON.stringify(this.state))
-    }
 
 
     render(){
         return(
             <div>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input type="text" placeholder="user id" onChange={this.handleChange.bind(this)}/>
+                    <input type="text" placeholder="username" onChange={this.handleChange.bind(this)}/>
+                    <input type="password" placeholder="password" onChange={this.handleChange.bind(this)}/>
                     <button>Login</button>
                 </form>
             </div>
         )
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        logIn: dispatch(LogIn(this.state.username, this.state.password))
     }
 }
