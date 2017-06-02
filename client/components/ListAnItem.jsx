@@ -33,6 +33,7 @@ class ListAnItem extends React.Component {
     //to be replaced
     apiPostListing(newListing, (err, listingId) => {
       this.props.history.push(`/viewlisting/${listingId}`) 
+      this.props.history.push('/viewlisting/' + listingId)
     })
   }
 
@@ -53,16 +54,6 @@ class ListAnItem extends React.Component {
   }
 }
 
-function ListAnItem(props){
-    console.log(props)
-    return (
-       <button onClick={()=> {click(props)}}>fdg</button>
-    )
-}
-
-function click (props){
-    props.history.push('/tyest')
-}
 export default ListAnItem
 
 // Item data structure
