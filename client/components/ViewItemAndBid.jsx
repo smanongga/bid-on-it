@@ -6,7 +6,7 @@ export default class ViewItemAndBid extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      listing: { name: '', description: '', starting_bid: '', user_name: '', picture_url: '', bids: [] }
+      listing: { id: '', name: '', description: '', starting_bid: '', user_name: '', picture_url: '', bids: [] }
     }
   }
 
