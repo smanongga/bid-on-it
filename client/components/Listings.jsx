@@ -7,7 +7,7 @@ class Listings extends React.Component {
     this.state = {
       items:[]
     }
-    // this.getItems = this.getItems
+    this.viewListing = this.viewListing.bind(this)
   }
 
   componentDidMount () {
@@ -20,6 +20,9 @@ class Listings extends React.Component {
     console.log(this.state)
   }
 
+  viewListing(id) {
+    this.props.history.push(`/viewlisting/${id}`)
+  }
 
   render() {
     return (
@@ -28,7 +31,7 @@ class Listings extends React.Component {
         return (
           <div key={key} className="listing">
           <img src={item.picture_url} />
-          <h2>{item.name}</h2>
+          <h2 onClick={e => this.viewListing(item.id)}>{item.name}</h2>
           <p>Curent bid: {item.current_bid}</p>
           <p>Auction finishes {item.finish_date}</p>
           </div>
