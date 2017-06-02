@@ -37,12 +37,13 @@ class ListAnItem extends React.Component {
   render() {
     return (
       <div>
-        <form>
-          <input type='text' placeholder='Name' name='name' onChange={this.fieldChanged} />
-          <input type='text' placeholder='Description' name='description' onChange={this.fieldChanged} />
-          <input type='text' placeholder='Picture url' name='picture_url' onChange={this.fieldChanged} />
-          <input type='text' placeholder='Starting Bid' name='starting_bid' onChange={this.fieldChanged} />
-          <button onClick={e => this.submitListing(e)}>Add Listing</button>
+      <h2 className='form-header'>Add a new item</h2>
+        <form className='list-item-container'>
+          <input className='form' type='text' placeholder='Name' name='name' onChange={this.fieldChanged} />
+          <input className='form'  type='text' placeholder='Description' name='description' onChange={this.fieldChanged} />
+          <input className='form' type='text' placeholder='Picture url' name='picture_url' onChange={this.fieldChanged} />
+          <input className='form' type='text' placeholder='Starting Bid' name='starting_bid' onChange={this.fieldChanged} />
+          <button className='form-button' onClick={e => this.submitListing(e)}>Add Listing</button>
         </form>
       </div>
     )
