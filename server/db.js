@@ -121,15 +121,15 @@ function addListing (listingData, userId, callback) {
     user_id: Number(userId),
     name: listingData.name,
     description: listingData.description,
-    picture_url: listingData.pictureUrl,
+    picture_url: listingData.picture_url,
     starting_bid: Number(listingData.starting_bid),
     start_date: currentDate,
     finish_date: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7, currentDate.getHours(), currentDate.getMinutes(), currentDate.getSeconds())
   }
   console.log(listing)
-  if (!listingData.pictureUrl || listingData.pictureUrl.length === 0) {
-    listing.picture_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'
-  }
+  // if (!listingData.pictureUrl || listingData.pictureUrl.length === 0) {
+  //   listing.picture_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'
+  // }
   console.log(listing)
   data.listings.push(listing)
   console.log(data.listings)

@@ -1,8 +1,13 @@
 import React from 'react'
 import request from 'superagent'
 import {connect} from 'react-redux'
+import Dropzone from 'react-dropzone'
+
+
 
 import {apiPostListing} from '../api'
+const CLOUDINARY_UPLOAD_PRESET = 'listingimage'
+const CLOUDINARY_UPLOAD_URL = 	'https://api.cloudinary.com/v1_1/partmatch/upload'
 
 class ListAnItem extends React.Component {
   constructor (props) {
@@ -17,6 +22,9 @@ class ListAnItem extends React.Component {
     }
     this.fieldChanged = this.fieldChanged.bind(this)
     this.submitListing = this.submitListing.bind(this)
+     this.onImageDrop = this.onImageDrop.bind(this)
+
+
   }
 
   fieldChanged (e) {
@@ -36,6 +44,32 @@ class ListAnItem extends React.Component {
     })
   }
 
+   onImageDrop(files) {
+        this.setState({
+            uploadedFile: files[0]
+        })
+        this.handleImageUpload(files[0]) 
+    } 
+
+    handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+
+     
+        console.log(response.body)
+        this.setState({
+          picture_url: response.body.secure_url
+        });
+      
+    });
+  }
+
   render() {
     return (
       <div>
@@ -43,9 +77,21 @@ class ListAnItem extends React.Component {
         <form className='list-item-container'>
           <input className='form' type='text' placeholder='Name' name='name' onChange={this.fieldChanged} />
           <input className='form'  type='text' placeholder='Description' name='description' onChange={this.fieldChanged} />
-          <input className='form' type='text' placeholder='Picture url' name='picture_url' onChange={this.fieldChanged} />
           <input className='form' type='text' placeholder='Starting Bid' name='starting_bid' onChange={this.fieldChanged} />
+          <Dropzone
+            multiple={false}
+            accept="image/*"
+            onDrop={this.onImageDrop.bind(this)}>
+            <p>Drop an image or click to select a file to upload.</p>
+            </Dropzone>
+            <div>
+        {this.state.picture_url === '' ? null :
+        <div>
+        
+          <h4>Upload Successful</h4>
+        </div>}
           <button className='form-button' onClick={e => this.submitListing(e)}>Add Listing</button>
+          </div>
         </form>
       </div>
     )
