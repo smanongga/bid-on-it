@@ -16,7 +16,6 @@ class ListAnItem extends React.Component {
       err: null
     }
     this.fieldChanged = this.fieldChanged.bind(this)
-    this.addListing = this.addListing.bind(this)
     this.submitListing = this.submitListing.bind(this)
   }
 
@@ -32,10 +31,10 @@ class ListAnItem extends React.Component {
     const newListing = this.state
     console.log(newListing)
     //to be replaced
-    apiPostListing(newListing, (err, listingId => {
+    apiPostListing(newListing, (err, listingId) => {
       props.history.push('/viewlisting/' + listingId)
-    }
-  }
+    })
+}
 
 
 

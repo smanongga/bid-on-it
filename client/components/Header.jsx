@@ -7,11 +7,11 @@ function Header (props) {
     console.log(props)
 
   return (
-    <div>
-      <h1>Nav Bar here</h1>
-       <Link to='/viewlistings/'>View Listings</Link>
-       <Link to={`/listitem/1`}> List an item</Link>
-       <Link to={"/viewlisting/1"}>View a listing</Link>
+        <div>
+            <h1>Nav Bar here</h1>
+            <Link to="/viewlistings/">View Listings</Link>
+            <Link to={`/listitem/1`}> List an item</Link>
+            <Link to={"/viewlisting/1"}>View a listing</Link>
         </div>
     )
 }
