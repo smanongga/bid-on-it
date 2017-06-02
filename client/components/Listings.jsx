@@ -27,16 +27,19 @@ class Listings extends React.Component {
   render() {
     return (
       <div>
-      {this.state.items.map((item, key) => {
-        return (
-          <div key={key} className="listing">
-          <img src={item.picture_url} />
-          <h2 onClick={e => this.viewListing(item.id)}>{item.name}</h2>
-          <p>Curent bid: {item.current_bid}</p>
-          <p>Auction finishes {item.finish_date}</p>
-          </div>
-        )
-      })}
+        <h2>Current Listings</h2>
+        <div className="listings-container">
+          {this.state.items.map((item, key) => {
+            return (
+              <div key={key} className="listing">
+                <img src={item.picture_url} />
+                <h2 onClick={e => this.viewListing(item.id)}>{item.name}</h2>
+                <p>Curent bid: {item.current_bid}</p>
+                <p>Auction finishes {item.finish_date}</p>
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }

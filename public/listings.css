@@ -1,0 +1,28 @@
+.listings-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listing {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 2em;
+  max-height: 350px;
+  overflow: auto;
+}
+
+.listing > img {
+  height: 60%;
+  object-fit: contain;
+}
+
+.listing > h2 {
+  text-decoration: underline;
+}
+
+.listing > h2:hover {
+  color: red;
+  cursor: pointer;
+}
