@@ -28,7 +28,7 @@ export function apiPostListing (obj, cb) {
     const id = obj.user_id
     request.post(`/listings/add/${id}`)
     .send(obj)
-    .then((err, res) => {
+    .end((err, res) => {
         if (err) cb(err)
         const result = res.body.listingId
         cb(null, result)

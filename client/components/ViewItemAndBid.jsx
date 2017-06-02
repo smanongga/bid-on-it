@@ -59,7 +59,7 @@ export default class ViewItemAndBid extends React.Component {
             </table>
           </div>
           <div className='bid-form'>
-            {/* <AddBid bidItem={this.state.listing.id} /> */}
+            <AddBid bidItem={this.state.listing.id} />
           </div>
         </div>
       </div>
