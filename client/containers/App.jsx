@@ -8,10 +8,11 @@ import ViewItemAndBid from '../components/ViewItemAndBid'
 class App extends React.Component {
   constructor (props) {
     super(props)
+    console.log(props)
   }
   render () {
     return (
-      <div>
+      <div className="sss">
         <Header routeProps={this.props} />
         <Route path={'/viewlistings/'} component={Listings} />
         <Route path={'/viewlisting/:id'} component={ViewItemAndBid} />
