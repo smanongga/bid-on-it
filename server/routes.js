@@ -78,10 +78,18 @@ router.post('/listings/bid/:listingId/:userId', function (req, res) {
 router.post('/listings/add/:userId', function (req, res) {
   db.addListing(req.body, req.params.userId, (error, listingId) => {
     if (error) {
- 
       return res.json({error})
     }
     return res.json({listingId})
+  })
+})
+
+router.post('/login', function (req, res) {
+  db.checkLogin(req.body.userName, req.body.password, (error, userId) => {
+    if (error) {
+      return res.json({error})
+    }
+    return res.json({userId})
   })
 })
 

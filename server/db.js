@@ -8,7 +8,8 @@ module.exports = {
   addBid,
   getListingsWon,
   getListingsLost,
-  getListingsWatching
+  getListingsWatching,
+  checkLogin
 }
 
 const data = require('./data.js')
@@ -215,4 +216,15 @@ function getListingsWatching (userId, callback) {
     listings = listings.filter(listing => listing.bids.find(bid => bid.user_id === userId))
     return callback(null, listings)
   })
+}
+
+function checkLogin (userName, password, callback) {
+  let user = data.users.find(user => user.user_name === userName)
+  if (!user) {
+    return callback(null, 0)
+  }
+  if (password !== user.password) {
+    return callback(null, 0)
+  }
+  return callback(null, user.id)
 }
